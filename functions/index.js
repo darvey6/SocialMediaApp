@@ -39,7 +39,7 @@ app.get('/screams', (req, res) => {
     .catch(err => console.error(err)); 
 })
 
-// //Getting documents
+//Getting documents
 // exports.getScreams = functions.https.onRequest((req, res) => {
 //     admin.firestore().collection('screams').get()
 //     .then(data => {
