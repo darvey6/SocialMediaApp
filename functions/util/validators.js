@@ -10,7 +10,7 @@ const isEmail = (email) => {
     else return false;
   };
 
-exports.validateSingupData = (data) => { 
+exports.validateSignupData = (data) => { 
     let errors = {};
   
 if (isEmpty(data.email)) {
