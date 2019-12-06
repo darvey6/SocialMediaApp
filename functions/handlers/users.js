@@ -126,7 +126,7 @@ exports.signup = (req, res) => {
         const imageExtension = filename.split('.')[filename.split('.').length - 1];
 
         // example 213423984293.png
-        const imageFileName = `${Math.round(Math.random() * 10000000)}.${imageExtension}`;
+        imageFileName = `${Math.round(Math.random() * 1000000000)}.${imageExtension}`;
 
         const filepath = path.join(os.tmpdir(), imageFileName);
         imageToBeUploaded = {filepath, mimetype};
@@ -135,7 +135,7 @@ exports.signup = (req, res) => {
       });
       busboy.on('finish', () => {
         //can read firebase admin SDK documentation
-        admin.storage().bucket().upload(imageToBeUploaded.filepath, {
+        admin.storage().bucket(`${config.storageBucket}`).upload(imageToBeUploaded.filepath, {
           resumable: false,
           metadata: {
             metadata: {
