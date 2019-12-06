@@ -106,7 +106,7 @@ exports.signup = (req, res) => {
 
       //import default projects
       const path = require('path');
-      const os = require('os)');
+      const os = require('os');
       const fs = require('fs');
 
       //instantiate new instance of busboy
@@ -126,7 +126,7 @@ exports.signup = (req, res) => {
         const imageExtension = filename.split('.')[filename.split('.').length - 1];
 
         // example 213423984293.png
-        const imageFileName = `${Math.round(random() * 10000000)}.${imageExtension}`;
+        const imageFileName = `${Math.round(Math.random() * 10000000)}.${imageExtension}`;
 
         const filepath = path.join(os.tmpdir(), imageFileName);
         imageToBeUploaded = {filepath, mimetype};
@@ -145,8 +145,8 @@ exports.signup = (req, res) => {
         })
         .then(() => {
           //adding alt=media it shows image on browser
-          const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${imageFileName}?alt=media`
-          return db.doc(`/user/${req.user.handle}`).update({ imageUrl });
+          const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${imageFileName}?alt=media`;
+          return db.doc(`/users/${req.user.handle}`).update({ imageUrl });
         })
         .then(() => {
           return res.json({ message: 'Image uploaded successfully'});
@@ -157,4 +157,4 @@ exports.signup = (req, res) => {
         });
       });
       busboy.end(req.rawBody);
-    }
+    };
