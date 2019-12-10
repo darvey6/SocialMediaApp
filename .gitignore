@@ -63,3 +63,6 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+#config file with api key
+reactfirebase-e36f4-firebase-adminsdk-q9h7v-b1d76bfebe.json
