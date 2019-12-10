@@ -118,15 +118,15 @@ exports.signup = (req, res) => {
 
       //file events
       busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-        console.log(fieldname);
-        console.log(filename);
-        console.log(mimetype);
+        if (mimetype !== 'image/jpeg' && mimetype !== 'image/png') {
+          return res.status(400).json({error: 'Wrong file type submitted'});
+        }
         // my.image.png (png is the extension) - need to get the png
         // access last item of the array [filename.split('.').length - 1]
         const imageExtension = filename.split('.')[filename.split('.').length - 1];
 
         // example 213423984293.png
-        const imageFileName = `${Math.round(Math.random() * 10000000)}.${imageExtension}`;
+        imageFileName = `${Math.round(Math.random() * 1000000000)}.${imageExtension}`;
 
         const filepath = path.join(os.tmpdir(), imageFileName);
         imageToBeUploaded = {filepath, mimetype};
@@ -135,7 +135,7 @@ exports.signup = (req, res) => {
       });
       busboy.on('finish', () => {
         //can read firebase admin SDK documentation
-        admin.storage().bucket().upload(imageToBeUploaded.filepath, {
+        admin.storage().bucket(`${config.storageBucket}`).upload(imageToBeUploaded.filepath, {
           resumable: false,
           metadata: {
             metadata: {
