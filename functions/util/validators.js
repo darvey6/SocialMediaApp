@@ -43,4 +43,28 @@ exports.validateLoginData = (data) => {
         errors,
         valid: Object.keys(errors).length === 0 ? true : false
     }
+};
+
+// frontend will send 3 properties (bio, website, location) even if user submits empty bio.
+// makes sure we dont submit empty string as a property value, if empty string dont add key.
+exports.reduceUserDetails = (data) => {
+  let userDetails = {};
+
+  if (!isEmpty(data.bio.trim())){
+    userDetails.bio = data.bio;
+  } 
+
+  if (!isEmpty(data.website.trim())){
+
+    // https://website.com  
+    if (data.website.trim().substring(0, 4) !== 'http'){
+      userDetails.website = `http://${data.website.trim()}`;
+    } else userDetails.website = data.website;
+  }
+
+  if (!isEmpty(data.location.trim())){
+    userDetails.location = data.location;
+  } 
+
+  return userDetails;
 }
