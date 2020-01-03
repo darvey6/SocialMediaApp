@@ -8,8 +8,7 @@ firebase.initializeApp(config)
 const { validateSignupData, validateLoginData, reduceUserDetails } = require('../util/validators');
 
 
-//signup route
-//user sign up
+//signup route to user sign up
 exports.signup = (req, res) => {
     const newUser = {
       email: req.body.email,
@@ -68,8 +67,7 @@ exports.signup = (req, res) => {
   }
 
 
-  //login route 
-  //log user in
+  //login route to log user in
   exports.login = (req, res) => {
     const user = {
       email: req.body.email,
@@ -153,6 +151,7 @@ exports.signup = (req, res) => {
         
         file.pipe(fs.createWriteStream(filepath));
       });
+
       busboy.on('finish', () => {
         //can read firebase admin SDK documentation
         admin.storage().bucket(`${config.storageBucket}`).upload(imageToBeUploaded.filepath, {
@@ -176,5 +175,6 @@ exports.signup = (req, res) => {
           return res.status(500).json({ error: err.code });
         });
       });
+
       busboy.end(req.rawBody);
     };
