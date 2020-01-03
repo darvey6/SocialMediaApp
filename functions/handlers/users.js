@@ -112,7 +112,11 @@ exports.signup = (req, res) => {
         console.error(err);
         return res.status(500).json({error: err});
       })
-    }
+    };
+
+    // Get own user details
+    //TODO: getAuthenticatedUser
+    //exports.getAuthenticatedUser = (req, res) => {}
 
 
 
