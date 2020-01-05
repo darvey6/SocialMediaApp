@@ -100,6 +100,7 @@ exports.signup = (req, res) => {
     };
 
 
+    
     // Add user details
     exports.addUserDetails = (req, res) => {
       let userDetails = reduceUserDetails(req.body);
