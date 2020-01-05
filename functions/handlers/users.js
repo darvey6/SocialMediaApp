@@ -116,10 +116,6 @@ exports.signup = (req, res) => {
     };
 
     // Get own user details
-<<<<<<< HEAD
-    //TODO: getAuthenticatedUser
-    //exports.getAuthenticatedUser = (req, res) => {}
-=======
     exports.getAuthenticatedUser = (req, res) => {
 
       //response (user) data
@@ -144,7 +140,6 @@ exports.signup = (req, res) => {
         return res.status(500).json({ error: err.code});
       });
     }
->>>>>>> develop
 
 
 
