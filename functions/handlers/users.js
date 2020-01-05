@@ -116,7 +116,6 @@ exports.signup = (req, res) => {
     };
 
     // Get own user details
-    //TODO: getAuthenticatedUser
     exports.getAuthenticatedUser = (req, res) => {
 
       //response (user) data
