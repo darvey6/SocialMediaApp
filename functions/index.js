@@ -6,7 +6,7 @@ const FBAuth = require('./util/fbAuth');
 
 const { getAllScreams, postOneScream } = require('./handlers/screams');
 //importing user routes
-const { signup, login, uploadImage, addUserDetails, getAuthenticatedUser} = require('./handlers/users');
+const { signup, login, uploadImage, addUserDetails} = require('./handlers/users');
 
 // Scream routes
 app.get('/screams', getAllScreams);
